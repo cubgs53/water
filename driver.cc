@@ -43,39 +43,39 @@ typedef Central2D< Shallow2D, MinMod<Shallow2D::real> > Sim;
  */
 
 // Circular dam break problem
-void dam_break(Sim::vec& u, double x, double y)
+void dam_break(Sim::real& u0, Sim::real& u1, Sim::real& u2, double x, double y)
 {
     x -= 1;
     y -= 1;
-    u[0] = 1.0 + 0.5*(x*x + y*y < 0.25+1e-5);
-    u[1] = 0;
-    u[2] = 0;
+    u0 = 1.0 + 0.5*(x*x + y*y < 0.25+1e-5);
+    u1 = 0;
+    u2 = 0;
 }
 
 // Still pond (ideally, nothing should move here!)
-void pond(Sim::vec& u, double x, double y)
+void pond(Sim::real& u0, Sim::real& u1, Sim::real& u2, double x, double y)
 {
-    u[0] = 1.0;
-    u[1] = 0;
-    u[2] = 0;
+    u0 = 1.0;
+    u1 = 0;
+    u2 = 0;
 }
 
 // River (ideally, the solver shouldn't do much with this, either)
-void river(Sim::vec& u, double x, double y)
+void river(Sim::real& u0, Sim::real& u1, Sim::real& u2, double x, double y)
 {
-    u[0] = 1.0;
-    u[1] = 1.0;
-    u[2] = 0;
+    u0 = 1.0;
+    u1 = 1.0;
+    u2 = 0;
 }
 
 
 // Wave on a river -- develops a shock in finite time!
-void wave(Sim::vec& u, double x, double y)
+void wave(Sim::real& u0, Sim::real& u1, Sim::real& u2, double x, double y)
 {
     using namespace std;
-    u[0] = 1.0 + 0.2 * sin(M_PI*x);
-    u[1] = 1.0;
-    u[2] = 0;
+    u0 = 1.0 + 0.2 * sin(M_PI*x);
+    u1 = 1.0;
+    u2 = 0;
 }
 
 
@@ -125,7 +125,7 @@ int main(int argc, char** argv)
         }
     }
 
-    void (*icfun)(Sim::vec& u, double x, double y) = dam_break;
+    void (*icfun)(Sim::real& u0, Sim::real& u1, Sim::real& u2, double x, double y) = dam_break;
     if (ic == "dam_break") {
         icfun = dam_break;
     } else if (ic == "pond") {

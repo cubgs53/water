@@ -67,26 +67,46 @@ struct Shallow2D {
     // Gravitational force (compile time constant)
     static constexpr real g = 9.8;
 
-    // Compute shallow water fluxes F(U), G(U)
-    static void flux(vec& FU, vec& GU, const vec& U) {
-        real h = U[0], hu = U[1], hv = U[2];
+    // // Compute shallow water fluxes F(U), G(U)
+    // static void flux(vec& FU, vec& GU, const vec& U) {
+    //     real h = U[0], hu = U[1], hv = U[2];
+
+    //     real temp = hu*hv/h;
+    //     real gtemp = (0.5*g)*h*h;
+
+    //     FU[0] = hu;
+    //     FU[1] = hu*hu/h + gtemp;
+    //     FU[2] = temp;
+
+    //     GU[0] = hv;
+    //     GU[1] = temp;
+    //     GU[2] = hv*hv/h + gtemp;
+    // }
+
+    static void flux(real& FU0, real& GU0, const real& U0,
+                     real& FU1, real& GU1, const real& U1,
+                     real& FU2, real& GU2, const real& U2
+    ) {
+        real h = U0, hu = U1, hv = U2;
 
         real temp = hu*hv/h;
         real gtemp = (0.5*g)*h*h;
 
-        FU[0] = hu;
-        FU[1] = hu*hu/h + gtemp;
-        FU[2] = temp;
+        FU0 = hu;
+        FU1 = hu*hu/h + gtemp;
+        FU2 = temp;
 
-        GU[0] = hv;
-        GU[1] = temp;
-        GU[2] = hv*hv/h + gtemp;
+        GU0 = hv;
+        GU1 = temp;
+        GU2 = hv*hv/h + gtemp;
     }
 
     // Compute shallow water wave speed
-    static void wave_speed(real& cx, real& cy, const vec& U) {
+    static void wave_speed(real& cx, real& cy,
+                           const real& U0, const real& U1, const real& U2
+    ) {
         using namespace std;
-        real h = U[0], hu = U[1], hv = U[2];
+        real h = U0, hu = U1, hv = U2;
         real root_gh = sqrt(g * h);  // NB: Don't let h go negative!
         cx = abs(hu/h) + root_gh;
         cy = abs(hv/h) + root_gh;
