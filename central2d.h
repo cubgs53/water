@@ -490,15 +490,18 @@ void Central2D<Physics, Limiter>::compute_step(int io, real dt)
     for (int iy = 1; iy < ny_all-1; ++iy)
         #pragma ivdep
         for (int ix = 1; ix < nx_all-1; ++ix) {
-            u0(ix,iy) -= dtcdx2 * fx0(ix,iy);
-            u0(ix,iy) -= dtcdy2 * gy0(ix,iy);
-            u1(ix,iy) -= dtcdx2 * fx1(ix,iy);
-            u1(ix,iy) -= dtcdy2 * gy1(ix,iy);
-            u2(ix,iy) -= dtcdx2 * fx2(ix,iy);
-            u2(ix,iy) -= dtcdy2 * gy2(ix,iy);
-            Physics::flux(f0(ix,iy), g0(ix,iy), u0(ix,iy),
-                          f1(ix,iy), g1(ix,iy), u1(ix,iy),
-                          f2(ix,iy), g2(ix,iy), u2(ix,iy));
+            real ut0 = u0(ix, iy);
+            real ut1 = u1(ix, iy);
+            real ut2 = u2(ix, iy);
+            ut0 -= dtcdx2 * fx0(ix,iy);
+            ut0 -= dtcdy2 * gy0(ix,iy);
+            ut1 -= dtcdx2 * fx1(ix,iy);
+            ut1 -= dtcdy2 * gy1(ix,iy);
+            ut2 -= dtcdx2 * fx2(ix,iy);
+            ut2 -= dtcdy2 * gy2(ix,iy);
+            Physics::flux(f0(ix,iy), g0(ix,iy), ut0,
+                          f1(ix,iy), g1(ix,iy), ut1,
+                          f2(ix,iy), g2(ix,iy), ut2);
         }
 
     // Corrector (finish the step)
