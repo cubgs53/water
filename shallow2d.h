@@ -89,16 +89,13 @@ struct Shallow2D {
     ) {
         real h = U0, hu = U1, hv = U2;
 
-        real temp = hu*hv/h;
-        real gtemp = (0.5*g)*h*h;
-
         FU0 = hu;
-        FU1 = hu*hu/h + gtemp;
-        FU2 = temp;
+        FU1 = hu*hu/h + (0.5*g)*h*h;
+        FU2 = hu*hv/h;
 
         GU0 = hv;
-        GU1 = temp;
-        GU2 = hv*hv/h + gtemp;
+        GU1 = hu*hv/h;
+        GU2 = hv*hv/h + (0.5*g)*h*h;
     }
 
     // Compute shallow water wave speed

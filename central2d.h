@@ -362,7 +362,6 @@ void Central2D<Physics, Limiter>::compute_fg_speeds(real& cx_, real& cy_)
     real cx = 1.0e-15;
     real cy = 1.0e-15;
     for (int iy = 0; iy < ny_all; ++iy)
-        #pragma ivdep
         for (int ix = 0; ix < nx_all; ++ix) {
             real cell_cx, cell_cy;
             Physics::flux(f0(ix,iy), g0(ix,iy), u0(ix,iy),
@@ -409,47 +408,38 @@ void Central2D<Physics, Limiter>::limited_derivs()
     //     }
     // }
     for (int iy = 0; iy < ny_all-2; ++iy)
-        #pragma ivdep
         for (int ix = 0; ix < nx_all-2; ++ix)
             limdiff( fx0(ix,iy), f0(ix,iy), f0(ix+1,iy), f0(ix+2,iy) );
     for (int iy = 0; iy < ny_all-2; ++iy)
-        #pragma ivdep
         for (int ix = 0; ix < nx_all-2; ++ix)
             limdiff( fx1(ix,iy), f1(ix,iy), f1(ix+1,iy), f1(ix+2,iy) );
     for (int iy = 0; iy < ny_all-2; ++iy)
-        #pragma ivdep
         for (int ix = 0; ix < nx_all-2; ++ix)
             limdiff( fx2(ix,iy), f2(ix,iy), f2(ix+1,iy), f2(ix+2,iy) );
 
     for (int iy = 0; iy < ny_all-2; ++iy)
-        #pragma ivdep
         for (int ix = 0; ix < nx_all-2; ++ix)
             limdiff( gy0(ix,iy), g0(ix,iy), g0(ix,iy+1), g0(ix,iy+0) );
     for (int iy = 0; iy < ny_all-2; ++iy)
-        #pragma ivdep
         for (int ix = 0; ix < nx_all-2; ++ix)
             limdiff( gy1(ix,iy), g1(ix,iy), g1(ix,iy+1), g1(ix,iy+1) );
     for (int iy = 0; iy < ny_all-2; ++iy)
-        #pragma ivdep
         for (int ix = 0; ix < nx_all-2; ++ix)
             limdiff( gy2(ix,iy), g2(ix,iy), g2(ix,iy+1), g2(ix,iy+2) );
 
     for (int iy = 0; iy < ny_all-2; ++iy) {
-        #pragma ivdep
         for (int ix = 0; ix < nx_all-2; ++ix) {
             limdiff( ux0(ix,iy), u0(ix,iy), u0(ix+1,iy), u0(ix+2,iy) );
             limdiff( uy0(ix,iy), u0(ix,iy), u0(ix,iy+1), u0(ix,iy+2) );
         }
     }
     for (int iy = 0; iy < ny_all-2; ++iy) {
-        #pragma ivdep
         for (int ix = 0; ix < nx_all-2; ++ix) {
             limdiff( ux1(ix,iy), u1(ix,iy), u1(ix+1,iy), u1(ix+2,iy) );
             limdiff( uy1(ix,iy), u1(ix,iy), u1(ix,iy+1), u1(ix,iy+2) );
         }
     }
     for (int iy = 0; iy < ny_all-2; ++iy) {
-        #pragma ivdep
         for (int ix = 0; ix < nx_all-2; ++ix) {
             limdiff( ux2(ix,iy), u2(ix,iy), u2(ix+1,iy), u2(ix+2,iy) );
             limdiff( uy2(ix,iy), u2(ix,iy), u2(ix,iy+1), u2(ix,iy+2) );
@@ -488,7 +478,6 @@ void Central2D<Physics, Limiter>::compute_step(int io, real dt)
 
     // Predictor (flux values of f and g at half step)
     for (int iy = 1; iy < ny_all-1; ++iy)
-        #pragma ivdep
         for (int ix = 1; ix < nx_all-1; ++ix) {
             real ut0 = u0(ix, iy);
             real ut1 = u1(ix, iy);
@@ -506,7 +495,6 @@ void Central2D<Physics, Limiter>::compute_step(int io, real dt)
 
     // Corrector (finish the step)
     for (int iy = nghost-io; iy < ny+nghost-io; ++iy) {
-        #pragma ivdep
         for (int ix = nghost-io; ix < nx+nghost-io; ++ix) {
             v0(ix,iy) = 0.2500 * (u0(ix, iy) + u0(ix+1, iy) + u0(ix, iy+1) + u0(ix+1, iy+1));
             v0(ix,iy) -= 0.0625 * (ux0(ix+1, iy) - ux0(ix, iy) + ux0(ix+1, iy+1) - ux0(ix, iy+1) +
@@ -530,7 +518,6 @@ void Central2D<Physics, Limiter>::compute_step(int io, real dt)
 
     // Copy from v storage back to main grid
     for (int j = nghost; j < ny+nghost; ++j){
-        #pragma ivdep
         for (int i = nghost; i < nx+nghost; ++i){
             u0(i,j) = v0(i-io,j-io);
             u1(i,j) = v1(i-io,j-io);
