@@ -1,0 +1,32 @@
+Source Line  Source                                                                     CPU Time  Spin Time  Overhead Time
+-----------  -------------------------------------------------------------------------  --------  ---------  -------------
+378           * bound on the CFL number).                                                                                 
+379           */                                                                                                          
+380                                                                                                                       
+381          template <class Physics, class Limiter>                                                                      
+382          void Central2D<Physics, Limiter>::compute_fg_speeds(real& cx_, real& cy_)                                    
+383          {                                                                                                            
+384              using namespace std;                                                                                     
+385              real cx = 1.0e-15;                                                                                       
+386              real cy = 1.0e-15;                                                                                       
+387              for (int iy = 0; iy < ny_all; ++iy)                                                                      
+388                  for (int ix = 0; ix < nx_all; ++ix) {                                0.005s         0s             0s
+389                      real cell_cx, cell_cy;                                                                           
+390                      Physics::flux(f0(ix,iy), g0(ix,iy), u0(ix,iy),                                                   
+391                                    f1(ix,iy), g1(ix,iy), u1(ix,iy),                                                   
+392                                    f2(ix,iy), g2(ix,iy), u2(ix,iy));                                                  
+393                      Physics::wave_speed(cell_cx, cell_cy,                                                            
+394                                          u0(ix,iy), u1(ix,iy), u2(ix,iy));                                            
+395                      // Physics::flux(f(ix,iy), g(ix,iy), u(ix,iy));                                                  
+396                      // Physics::wave_speed(cell_cx, cell_cy, u(ix,iy));                                              
+397                      cx = max(cx, cell_cx);                                           0.025s         0s             0s
+398                      cy = max(cy, cell_cy);                                           0.012s         0s             0s
+399                  }                                                                                                    
+400              cx_ = cx;                                                                                                
+401              cy_ = cy;                                                                                                
+402          }                                                                                                            
+403                                                                                                                       
+404          /**                                                                                                          
+405           * ### Derivatives with limiters                                                                             
+406           *                                                                                                           
+407           * In order to advance the time step, we also need to estimate                                               

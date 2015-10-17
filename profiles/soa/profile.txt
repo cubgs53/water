@@ -1,0 +1,36 @@
+Function                                                  Module        CPU Time  Spin Time  Overhead Time
+--------------------------------------------------------  ------------  --------  ---------  -------------
+Central2D<Shallow2D, MinMod<float>>::compute_step         shallow         1.238s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::limited_derivs       shallow         0.897s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::compute_fg_speeds    shallow         0.313s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::limdiff              shallow         0.234s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::limdiff              shallow         0.203s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::limdiff              shallow         0.201s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::limdiff              shallow         0.200s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::limdiff              shallow         0.192s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::limdiff              shallow         0.188s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::limdiff              shallow         0.170s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.080s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.046s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.030s         0s             0s
+[Outside any known module]                                [Unknown]       0.018s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.017s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.016s         0s             0s
+_IO_fwrite                                                libc-2.12.so    0.015s         0s             0s
+_IO_file_xsputn                                           libc-2.12.so    0.014s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.007s         0s             0s
+SimViz<Central2D<Shallow2D, MinMod<float>>>::write_frame  shallow         0.006s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::u1                   shallow         0.005s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::u2                   shallow         0.005s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.005s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::solution_check       shallow         0.004s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::apply_periodic       shallow         0.003s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.003s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.003s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::offset               shallow         0.001s         0s             0s
+Central2D<Shallow2D, MinMod<float>>::run                  shallow         0.001s         0s             0s
+__intel_memset                                            shallow         0.001s         0s             0s
+__mpn_mul_1                                               libc-2.12.so    0.001s         0s             0s
+__printf_fp                                               libc-2.12.so    0.001s         0s             0s
+do_lookup_x                                               ld-2.12.so      0.001s         0s             0s
+std::vector<float, std::allocator<float>>::operator[]     shallow         0.001s         0s             0s

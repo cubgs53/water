@@ -1,0 +1,227 @@
+Source Line  Source                                                                                    CPU Time  Spin Time  Overhead Time
+-----------  ----------------------------------------------------------------------------------------  --------  ---------  -------------
+223              std::vector<real> gy2_;           // y differences of g                                                                 
+224              std::vector<real> v2_;            // Solution values at next step                                                       
+225                                                                                                                                      
+226              // Array accessor functions                                                                                             
+227                                                                                                                                      
+228              int offset(int ix, int iy) const { return iy*nx_all+ix; }                                                               
+229                                                                                                                                      
+230              // vec& u(int ix, int iy)    { return u_[offset(ix,iy)]; }                                                              
+231              // vec& v(int ix, int iy)    { return v_[offset(ix,iy)]; }                                                              
+232              // vec& f(int ix, int iy)    { return f_[offset(ix,iy)]; }                                                              
+233              // vec& g(int ix, int iy)    { return g_[offset(ix,iy)]; }                                                              
+234                                                                                                                                      
+235              // vec& ux(int ix, int iy)   { return ux_[offset(ix,iy)]; }                                                             
+236              // vec& uy(int ix, int iy)   { return uy_[offset(ix,iy)]; }                                                             
+237              // vec& fx(int ix, int iy)   { return fx_[offset(ix,iy)]; }                                                             
+238              // vec& gy(int ix, int iy)   { return gy_[offset(ix,iy)]; }                                                             
+239                                                                                                                                      
+240              real& u0(int ix, int iy)    { return u0_[offset(ix,iy)]; }                                                              
+241              real& v0(int ix, int iy)    { return v0_[offset(ix,iy)]; }                                                              
+242              real& f0(int ix, int iy)    { return f0_[offset(ix,iy)]; }                                                              
+243              real& g0(int ix, int iy)    { return g0_[offset(ix,iy)]; }                                                              
+244                                                                                                                                      
+245              real& ux0(int ix, int iy)   { return ux0_[offset(ix,iy)]; }                                                             
+246              real& uy0(int ix, int iy)   { return uy0_[offset(ix,iy)]; }                                                             
+247              real& fx0(int ix, int iy)   { return fx0_[offset(ix,iy)]; }                                                             
+248              real& gy0(int ix, int iy)   { return gy0_[offset(ix,iy)]; }                                                             
+249                                                                                                                                      
+250                                                                                                                                      
+251              real& u1(int ix, int iy)    { return u1_[offset(ix,iy)]; }                                                              
+252              real& v1(int ix, int iy)    { return v1_[offset(ix,iy)]; }                                                              
+253              real& f1(int ix, int iy)    { return f1_[offset(ix,iy)]; }                                                              
+254              real& g1(int ix, int iy)    { return g1_[offset(ix,iy)]; }                                                              
+255                                                                                                                                      
+256              real& ux1(int ix, int iy)   { return ux1_[offset(ix,iy)]; }                                                             
+257              real& uy1(int ix, int iy)   { return uy1_[offset(ix,iy)]; }                                                             
+258              real& fx1(int ix, int iy)   { return fx1_[offset(ix,iy)]; }                                                             
+259              real& gy1(int ix, int iy)   { return gy1_[offset(ix,iy)]; }                                                             
+260                                                                                                                                      
+261                                                                                                                                      
+262              real& u2(int ix, int iy)    { return u2_[offset(ix,iy)]; }                                                              
+263              real& v2(int ix, int iy)    { return v2_[offset(ix,iy)]; }                                                              
+264              real& f2(int ix, int iy)    { return f2_[offset(ix,iy)]; }                                                              
+265              real& g2(int ix, int iy)    { return g2_[offset(ix,iy)]; }                                                              
+266                                                                                                                                      
+267              real& ux2(int ix, int iy)   { return ux2_[offset(ix,iy)]; }                                                             
+268              real& uy2(int ix, int iy)   { return uy2_[offset(ix,iy)]; }                                                             
+269              real& fx2(int ix, int iy)   { return fx2_[offset(ix,iy)]; }                                                             
+270              real& gy2(int ix, int iy)   { return gy2_[offset(ix,iy)]; }                                                             
+271                                                                                                                                      
+272              // Wrapped accessor (periodic BC)                                                                                       
+273              int ioffset(int ix, int iy) {                                                                                           
+274                  return offset( (ix+nx-nghost) % nx + nghost,                                                                        
+275                                 (iy+ny-nghost) % ny + nghost );                                                                      
+276              }                                                                                                                       
+277                                                                                                                                      
+278              real& uwrap0(int ix, int iy)  { return u0_[ioffset(ix,iy)]; }                                                           
+279              real& uwrap1(int ix, int iy)  { return u1_[ioffset(ix,iy)]; }                                                           
+280              real& uwrap2(int ix, int iy)  { return u2_[ioffset(ix,iy)]; }                                                           
+281              // vec& uwrap(int ix, int iy)  { return u_[ioffset(ix,iy)]; }                                                           
+282                                                                                                                                      
+283              // Apply limiter to all components in a vector                                                                          
+284              static void limdiff(real& du, const real& um, const real& u0, const real& up) {                                         
+285                  du = Limiter::limdiff(um, u0, up);                                                  0.331s         0s             0s
+286              }                                                                                                                       
+287              // static void limdiff(vec& du, const vec& um, const vec& u0, const vec& up) {                                          
+288              //     for (int m = 0; m < du.size(); ++m)                                                                              
+289              //         du[m] = Limiter::limdiff(um[m], u0[m], up[m]);                                                               
+290              // }                                                                                                                    
+291                                                                                                                                      
+292              // Stages of the main algorithm                                                                                         
+293              void apply_periodic();                                                                                                  
+294              void compute_fg_speeds(real& cx, real& cy);                                                                             
+295              void limited_derivs();                                                                                                  
+296              void compute_step(int io, real dt);                                                                                     
+297                                                                                                                                      
+298          };                                                                                                                          
+299                                                                                                                                      
+300                                                                                                                                      
+301          /**                                                                                                                         
+302           * ## Initialization                                                                                                        
+303           *                                                                                                                          
+304           * Before starting the simulation, we need to be able to set the                                                            
+305           * initial conditions.  The `init` function does exactly this by                                                            
+306           * running a callback function at the center of each cell in order                                                          
+307           * to initialize the cell $U$ value.  For the purposes of this function,                                                    
+308           * cell $(i,j)$ is the subdomain                                                                                            
+309           * $[i \Delta x, (i+1) \Delta x] \times [j \Delta y, (j+1) \Delta y]$.                                                      
+310           */                                                                                                                         
+311                                                                                                                                      
+312          template <class Physics, class Limiter>                                                                                     
+313          template <typename F>                                                                                                       
+314          void Central2D<Physics, Limiter>::init(F f)                                                                                 
+315          {                                                                                                                           
+316              for (int iy = 0; iy < ny; ++iy) {                                                                                       
+317                  for (int ix = 0; ix < nx; ++ix) {                                                                                   
+318                      f(u0(nghost+ix,nghost+iy), u1(nghost+ix,nghost+iy), u2(nghost+ix,nghost+iy),                                    
+319                        (ix+0.5)*dx, (iy+0.5)*dy);                                                                                    
+320                      // f(u(nghost+ix,nghost+iy), (ix+0.5)*dx, (iy+0.5)*dy);                                                         
+321                  }                                                                                                                   
+322              }                                                                                                                       
+323          }                                                                                                                           
+324                                                                                                                                      
+325          /**                                                                                                                         
+326           * ## Time stepper implementation                                                                                           
+327           *                                                                                                                          
+328           * ### Boundary conditions                                                                                                  
+329           *                                                                                                                          
+330           * In finite volume methods, boundary conditions are typically applied by                                                   
+331           * setting appropriate values in ghost cells.  For our framework, we will                                                   
+332           * apply periodic boundary conditions; that is, waves that exit one side                                                    
+333           * of the domain will enter from the other side.                                                                            
+334           *                                                                                                                          
+335           * We apply the conditions by assuming that the cells with coordinates                                                      
+336           * `nghost <= ix <= nx+nghost` and `nghost <= iy <= ny+nghost` are                                                          
+337           * "canonical", and setting the values for all other cells `(ix,iy)`                                                        
+338           * to the corresponding canonical values `(ix+p*nx,iy+q*ny)` for some                                                       
+339           * integers `p` and `q`.                                                                                                    
+340           */                                                                                                                         
+341                                                                                                                                      
+342          template <class Physics, class Limiter>                                                                                     
+343          void Central2D<Physics, Limiter>::apply_periodic()                                                                          
+344          {                                                                                                                           
+345              // Copy data between right and left boundaries                                                                          
+346              for (int iy = 0; iy < ny_all; ++iy)                                                                                     
+347                  for (int ix = 0; ix < nghost; ++ix) {                                                                               
+348                      // u(ix,          iy) = uwrap(ix,          iy);                                                                 
+349                      // u(nx+nghost+ix,iy) = uwrap(nx+nghost+ix,iy);                                                                 
+350                      u0(ix,          iy) = uwrap0(ix,          iy);                                                                  
+351                      u0(nx+nghost+ix,iy) = uwrap0(nx+nghost+ix,iy);                                                                  
+352                      u1(ix,          iy) = uwrap1(ix,          iy);                                                                  
+353                      u1(nx+nghost+ix,iy) = uwrap1(nx+nghost+ix,iy);                                                                  
+354                      u2(ix,          iy) = uwrap2(ix,          iy);                                                                  
+355                      u2(nx+nghost+ix,iy) = uwrap2(nx+nghost+ix,iy);                                                                  
+356                  }                                                                                                                   
+357                                                                                                                                      
+358              // Copy data between top and bottom boundaries                                                                          
+359              for (int ix = 0; ix < nx_all; ++ix)                                                                                     
+360                  for (int iy = 0; iy < nghost; ++iy) {                                                                               
+361                      u0(ix,          iy) = uwrap0(ix,          iy);                                                                  
+362                      u0(ix,ny+nghost+iy) = uwrap0(ix,ny+nghost+iy);                                                                  
+363                      u1(ix,          iy) = uwrap1(ix,          iy);                                                                  
+364                      u1(ix,ny+nghost+iy) = uwrap1(ix,ny+nghost+iy);                                                                  
+365                      u2(ix,          iy) = uwrap2(ix,          iy);                                                                  
+366                      u2(ix,ny+nghost+iy) = uwrap2(ix,ny+nghost+iy);                                                                  
+367                  }                                                                                                                   
+368          }                                                                                                                           
+369                                                                                                                                      
+370                                                                                                                                      
+371          /**                                                                                                                         
+372           * ### Initial flux and speed computations                                                                                  
+373           *                                                                                                                          
+374           * At the start of each time step, we need the flux values at                                                               
+375           * cell centers (to advance the numerical method) and a bound                                                               
+376           * on the wave speeds in the $x$ and $y$ directions (so that                                                                
+377           * we can choose a time step that respects the specified upper                                                              
+378           * bound on the CFL number).                                                                                                
+379           */                                                                                                                         
+380                                                                                                                                      
+381          template <class Physics, class Limiter>                                                                                     
+382          void Central2D<Physics, Limiter>::compute_fg_speeds(real& cx_, real& cy_)                                                   
+383          {                                                                                                                           
+384              using namespace std;                                                                                                    
+385              real cx = 1.0e-15;                                                                                                      
+386              real cy = 1.0e-15;                                                                                                      
+387              for (int iy = 0; iy < ny_all; ++iy)                                                                                     
+388                  for (int ix = 0; ix < nx_all; ++ix) {                                                                               
+389                      real cell_cx, cell_cy;                                                                                          
+390                      Physics::flux(f0(ix,iy), g0(ix,iy), u0(ix,iy),                                                                  
+391                                    f1(ix,iy), g1(ix,iy), u1(ix,iy),                                                                  
+392                                    f2(ix,iy), g2(ix,iy), u2(ix,iy));                                                                 
+393                      Physics::wave_speed(cell_cx, cell_cy,                                                                           
+394                                          u0(ix,iy), u1(ix,iy), u2(ix,iy));                                                           
+395                      // Physics::flux(f(ix,iy), g(ix,iy), u(ix,iy));                                                                 
+396                      // Physics::wave_speed(cell_cx, cell_cy, u(ix,iy));                                                             
+397                      cx = max(cx, cell_cx);                                                                                          
+398                      cy = max(cy, cell_cy);                                                                                          
+399                  }                                                                                                                   
+400              cx_ = cx;                                                                                                               
+401              cy_ = cy;                                                                                                               
+402          }                                                                                                                           
+403                                                                                                                                      
+404          /**                                                                                                                         
+405           * ### Derivatives with limiters                                                                                            
+406           *                                                                                                                          
+407           * In order to advance the time step, we also need to estimate                                                              
+408           * derivatives of the fluxes and the solution values at each cell.                                                          
+409           * In order to maintain stability, we apply a limiter here.                                                                 
+410           */                                                                                                                         
+411                                                                                                                                      
+412          template <class Physics, class Limiter>                                                                                     
+413          void Central2D<Physics, Limiter>::limited_derivs()                                                                          
+414          {                                                                                                                           
+415              for (int iy = 1; iy < ny_all-1; ++iy) {                                                                                 
+416                  for (int ix = 1; ix < nx_all-1; ++ix) {                                             0.008s         0s             0s
+417                      // x derivs                                                                                                     
+418                      limdiff( ux0(ix,iy), u0(ix-1,iy), u0(ix,iy), u0(ix+1,iy) );                                                     
+419                      limdiff( fx0(ix,iy), f0(ix-1,iy), f0(ix,iy), f0(ix+1,iy) );                                                     
+420                      limdiff( ux1(ix,iy), u1(ix-1,iy), u1(ix,iy), u1(ix+1,iy) );                                                     
+421                      limdiff( fx1(ix,iy), f1(ix-1,iy), f1(ix,iy), f1(ix+1,iy) );                                                     
+422                      limdiff( ux2(ix,iy), u2(ix-1,iy), u2(ix,iy), u2(ix+1,iy) );                                                     
+423                      limdiff( fx2(ix,iy), f2(ix-1,iy), f2(ix,iy), f2(ix+1,iy) );                                                     
+424                                                                                                                                      
+425                      // y derivs                                                                                                     
+426                      limdiff( uy0(ix,iy), u0(ix,iy-1), u0(ix,iy), u0(ix,iy+1) );                                                     
+427                      limdiff( gy0(ix,iy), g0(ix,iy-1), g0(ix,iy), g0(ix,iy+1) );                                                     
+428                      limdiff( uy1(ix,iy), u1(ix,iy-1), u1(ix,iy), u1(ix,iy+1) );                                                     
+429                      limdiff( gy1(ix,iy), g1(ix,iy-1), g1(ix,iy), g1(ix,iy+1) );                                                     
+430                      limdiff( uy2(ix,iy), u2(ix,iy-1), u2(ix,iy), u2(ix,iy+1) );                                                     
+431                      limdiff( gy2(ix,iy), g2(ix,iy-1), g2(ix,iy), g2(ix,iy+1) );                                                     
+432                                                                                                                                      
+433                      // // x derivs                                                                                                  
+434                      // limdiff( ux(ix,iy), u(ix-1,iy), u(ix,iy), u(ix+1,iy) );                                                      
+435                      // limdiff( fx(ix,iy), f(ix-1,iy), f(ix,iy), f(ix+1,iy) );                                                      
+436                                                                                                                                      
+437                      // // y derivs                                                                                                  
+438                      // limdiff( uy(ix,iy), u(ix,iy-1), u(ix,iy), u(ix,iy+1) );                                                      
+439                      // limdiff( gy(ix,iy), g(ix,iy-1), g(ix,iy), g(ix,iy+1) );                                                      
+440                  }                                                                                                                   
+441              }                                                                                                                       
+442          }                                                                                                                           
+443                                                                                                                                      
+444                                                                                                                                      
+445          /**                                                                                                                         
+446           * ### Advancing a time step                                                                                                
+447           *                                                                                                                          
