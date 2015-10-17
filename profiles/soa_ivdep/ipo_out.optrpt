@@ -1,0 +1,1093 @@
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at central2d.h(318,9) inlined into driver.cc(143,9)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+LOOP END
+
+LOOP BEGIN at central2d.h(701,9) inlined into driver.cc(144,9)
+   remark #15520: loop was not vectorized: loop with early exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at meshio.h(59,37) inlined into driver.cc(145,9)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+
+   LOOP BEGIN at meshio.h(60,41) inlined into driver.cc(145,9)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+   LOOP END
+LOOP END
+
+LOOP BEGIN at central2d.h(661,5) inlined into driver.cc(149,13)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+
+   LOOP BEGIN at central2d.h(663,9) inlined into driver.cc(149,13)
+      remark #15382: vectorization support: call to function Central2D<Shallow2D, MinMod<Shallow2D::real>>::apply_periodic(Central2D<Shallow2D, MinMod<Shallow2D::real>> *) cannot be vectorized   [ central2d.h(665,13) ]
+      remark #15382: vectorization support: call to function Central2D<Shallow2D, MinMod<Shallow2D::real>>::compute_fg_speeds(Central2D<Shallow2D, MinMod<Shallow2D::real>> *, Central2D<Shallow2D, MinMod<Shallow2D::real>>::real &, Central2D<Shallow2D, MinMod<Shallow2D::real>>::real &) cannot be vectorized   [ central2d.h(666,13) ]
+      remark #15382: vectorization support: call to function Central2D<Shallow2D, MinMod<Shallow2D::real>>::limited_derivs(Central2D<Shallow2D, MinMod<Shallow2D::real>> *) cannot be vectorized   [ central2d.h(667,13) ]
+      remark #15382: vectorization support: call to function Central2D<Shallow2D, MinMod<Shallow2D::real>>::compute_step(Central2D<Shallow2D, MinMod<Shallow2D::real>> *, int, Central2D<Shallow2D, MinMod<Shallow2D::real>>::real) cannot be vectorized   [ central2d.h(675,13) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   LOOP END
+LOOP END
+
+LOOP BEGIN at central2d.h(701,9) inlined into driver.cc(155,13)
+   remark #15520: loop was not vectorized: loop with early exits cannot be vectorized unless it meets search loop idiom criteria
+LOOP END
+
+LOOP BEGIN at meshio.h(59,37) inlined into driver.cc(156,13)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+
+   LOOP BEGIN at meshio.h(60,41) inlined into driver.cc(156,13)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+   LOOP END
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at driver.cc(101,5)
+   remark #15341: loop was not vectorized: nonstandard loop is not a vectorization candidate
+LOOP END
+
+LOOP BEGIN at central2d.h(316,5) inlined into driver.cc(143,9)
+   remark #15341: loop was not vectorized: nonstandard loop is not a vectorization candidate
+LOOP END
+
+LOOP BEGIN at central2d.h(700,5) inlined into driver.cc(144,9)
+   remark #15341: loop was not vectorized: nonstandard loop is not a vectorization candidate
+LOOP END
+
+LOOP BEGIN at driver.cc(146,5)
+   remark #15536: loop was not vectorized: inner loop throttling prevents vectorization of this outer loop. Refer to inner loop message for more details.
+
+   LOOP BEGIN at central2d.h(700,5) inlined into driver.cc(155,13)
+      remark #15341: loop was not vectorized: nonstandard loop is not a vectorization candidate
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: Central2D<Shallow2D, MinMod<Shallow2D::real>>::compute_step(Central2D<Shallow2D, MinMod<Shallow2D::real>> *, int, Central2D<Shallow2D, MinMod<Shallow2D::real>>::real)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at central2d.h(552,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at central2d.h(554,9)
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at central2d.h(554,9)
+      remark #15389: vectorization support: reference F32 has unaligned access   [ central2d.h(561,24) ]
+      remark #15389: vectorization support: reference F32 has unaligned access   [ central2d.h(562,24) ]
+      remark #15389: vectorization support: reference F32 has unaligned access   [ central2d.h(563,24) ]
+      remark #15389: vectorization support: reference F32 has unaligned access   [ central2d.h(565,13) ]
+      remark #15389: vectorization support: reference F32 has unaligned access   [ central2d.h(565,13) ]
+      remark #15389: vectorization support: reference F32 has unaligned access   [ central2d.h(567,13) ]
+      remark #15389: vectorization support: reference F32 has unaligned access   [ central2d.h(567,13) ]
+      remark #15389: vectorization support: reference F32 has unaligned access   [ central2d.h(569,13) ]
+      remark #15389: vectorization support: reference F32 has unaligned access   [ central2d.h(569,13) ]
+      remark #15389: vectorization support: reference FU0 has unaligned access   [ shallow2d.h(79,9) ]
+      remark #15389: vectorization support: reference FU1 has unaligned access   [ shallow2d.h(80,9) ]
+      remark #15389: vectorization support: reference FU2 has unaligned access   [ shallow2d.h(81,9) ]
+      remark #15389: vectorization support: reference GU0 has unaligned access   [ shallow2d.h(83,9) ]
+      remark #15389: vectorization support: reference GU1 has unaligned access   [ shallow2d.h(84,9) ]
+      remark #15389: vectorization support: reference GU2 has unaligned access   [ shallow2d.h(85,9) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 3   [ shallow2d.h(80,9) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ shallow2d.h(80,9) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 3   [ shallow2d.h(85,9) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ shallow2d.h(85,9) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15450: unmasked unaligned unit stride loads: 9 
+      remark #15451: unmasked unaligned unit stride stores: 6 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 256 
+      remark #15477: vector loop cost: 33.120 
+      remark #15478: estimated potential speedup: 6.050 
+      remark #15479: lightweight vector operations: 104 
+      remark #15487: type converts: 8 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at central2d.h(554,9)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at central2d.h(579,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at central2d.h(581,9)
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(583,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(583,42) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(584,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(584,42) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(585,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(585,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(586,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(586,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(587,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(587,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(588,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(588,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(589,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(589,44) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(590,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(590,44) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(591,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(591,44) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(592,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(592,44) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 4   [ central2d.h(582,13) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ central2d.h(582,13) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15458: masked indexed (or gather) loads: 20 
+      remark #15459: masked indexed (or scatter) stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 166 
+      remark #15477: vector loop cost: 143.000 
+      remark #15478: estimated potential speedup: 1.150 
+      remark #15479: lightweight vector operations: 277 
+      remark #15487: type converts: 5 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at central2d.h(581,9)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at central2d.h(596,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at central2d.h(598,9)
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(600,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(600,42) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(601,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(601,42) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(602,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(602,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(603,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(603,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(604,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(604,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(605,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(605,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(606,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(606,44) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(607,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(607,44) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(608,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(608,44) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(609,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(609,44) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 4   [ central2d.h(599,13) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ central2d.h(599,13) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15458: masked indexed (or gather) loads: 20 
+      remark #15459: masked indexed (or scatter) stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 166 
+      remark #15477: vector loop cost: 143.000 
+      remark #15478: estimated potential speedup: 1.150 
+      remark #15479: lightweight vector operations: 277 
+      remark #15487: type converts: 5 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at central2d.h(598,9)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at central2d.h(613,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at central2d.h(615,9)
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(617,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(617,42) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(618,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(618,42) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(619,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(619,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(620,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(620,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(621,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(621,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(622,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(622,45) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(623,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(623,44) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(624,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(624,44) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(625,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(625,44) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(626,28) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(626,44) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 4   [ central2d.h(616,13) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ central2d.h(616,13) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15458: masked indexed (or gather) loads: 20 
+      remark #15459: masked indexed (or scatter) stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 166 
+      remark #15477: vector loop cost: 143.000 
+      remark #15478: estimated potential speedup: 1.150 
+      remark #15479: lightweight vector operations: 277 
+      remark #15487: type converts: 5 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at central2d.h(615,9)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at central2d.h(631,5)
+   remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+
+   LOOP BEGIN at central2d.h(632,9)
+      remark #15523: loop was not vectorized: cannot compute loop iteration count before executing the loop.
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: Central2D<Shallow2D, MinMod<Shallow2D::real>>::limited_derivs(Central2D<Shallow2D, MinMod<Shallow2D::real>> *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at central2d.h(492,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at central2d.h(494,9)
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at central2d.h(494,9)
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15389: vectorization support: reference u0 has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference um has unaligned access   [ minmod.h(74,23) ]
+      remark #15389: vectorization support: reference up has unaligned access   [ minmod.h(75,23) ]
+      remark #15389: vectorization support: reference du has unaligned access   [ central2d.h(285,9) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15525: call to function '__builtin_copysignf' is serialized   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15450: unmasked unaligned unit stride loads: 33 
+      remark #15451: unmasked unaligned unit stride stores: 12 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 5930 
+      remark #15477: vector loop cost: 5585.500 
+      remark #15478: estimated potential speedup: 1.050 
+      remark #15479: lightweight vector operations: 791 
+      remark #15480: medium-overhead vector operations: 1 
+      remark #15485: serialized function calls: 48
+      remark #15488: --- end vector loop cost summary ---
+      remark #15489: --- begin vector function matching report ---
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15490: Function call: __builtin_copysignf(float, float) with simdlen=8, actual parameter types: (uniform,vector)   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/cmath(1241,12) ]
+      remark #15545: SIMD annotation was not seen, consider adding 'declare simd' directives at function declaration 
+      remark #15493: --- end vector function matching report ---
+   LOOP END
+
+   LOOP BEGIN at central2d.h(494,9)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: Central2D<Shallow2D, MinMod<Shallow2D::real>>::compute_fg_speeds(Central2D<Shallow2D, MinMod<Shallow2D::real>> *, Central2D<Shallow2D, MinMod<Shallow2D::real>>::real &, Central2D<Shallow2D, MinMod<Shallow2D::real>>::real &)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at central2d.h(390,5)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at central2d.h(392,9)
+   <Peeled>
+   LOOP END
+
+   LOOP BEGIN at central2d.h(392,9)
+      remark #15389: vectorization support: reference U0 has unaligned access   [ shallow2d.h(76,18) ]
+      remark #15389: vectorization support: reference U1 has unaligned access   [ shallow2d.h(76,27) ]
+      remark #15389: vectorization support: reference U2 has unaligned access   [ shallow2d.h(76,36) ]
+      remark #15389: vectorization support: reference FU0 has unaligned access   [ shallow2d.h(79,9) ]
+      remark #15389: vectorization support: reference FU1 has unaligned access   [ shallow2d.h(80,9) ]
+      remark #15389: vectorization support: reference FU2 has unaligned access   [ shallow2d.h(81,9) ]
+      remark #15389: vectorization support: reference GU0 has unaligned access   [ shallow2d.h(83,9) ]
+      remark #15389: vectorization support: reference GU1 has unaligned access   [ shallow2d.h(84,9) ]
+      remark #15389: vectorization support: reference GU2 has unaligned access   [ shallow2d.h(85,9) ]
+      remark #15389: vectorization support: reference U0 has unaligned access   [ shallow2d.h(94,18) ]
+      remark #15389: vectorization support: reference U1 has unaligned access   [ shallow2d.h(94,27) ]
+      remark #15389: vectorization support: reference U2 has unaligned access   [ shallow2d.h(94,36) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 3   [ shallow2d.h(80,9) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ shallow2d.h(80,9) ]
+      remark #15417: vectorization support: number of FP up converts: single precision to double precision 3   [ shallow2d.h(85,9) ]
+      remark #15418: vectorization support: number of FP down converts: double precision to single precision 1   [ shallow2d.h(85,9) ]
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15442: entire loop may be executed in remainder
+      remark #15450: unmasked unaligned unit stride loads: 3 
+      remark #15451: unmasked unaligned unit stride stores: 6 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 346 
+      remark #15477: vector loop cost: 45.620 
+      remark #15478: estimated potential speedup: 5.960 
+      remark #15479: lightweight vector operations: 110 
+      remark #15487: type converts: 8 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at central2d.h(392,9)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: Central2D<Shallow2D, MinMod<Shallow2D::real>>::apply_periodic(Central2D<Shallow2D, MinMod<Shallow2D::real>> *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at central2d.h(347,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between this line 357 and F32 line 357
+   remark #15346: vector dependence: assumed FLOW dependence between F32 line 357 and this line 357
+
+   LOOP BEGIN at central2d.h(349,9)
+      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(357,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(355,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(352,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(353,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(354,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(356,35) ]
+      remark #15458: masked indexed (or gather) loads: 6 
+      remark #15459: masked indexed (or scatter) stores: 6 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 375 
+      remark #15477: vector loop cost: 739.000 
+      remark #15478: estimated potential speedup: 0.590 
+      remark #15479: lightweight vector operations: 312 
+      remark #15480: medium-overhead vector operations: 5 
+      remark #15481: heavy-overhead vector operations: 1 
+      remark #15482: vectorized math library calls: 12 
+      remark #15487: type converts: 12 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+LOOP END
+
+LOOP BEGIN at central2d.h(361,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between this line 369 and F32 line 369
+   remark #15346: vector dependence: assumed FLOW dependence between F32 line 369 and this line 369
+
+   LOOP BEGIN at central2d.h(363,9)
+      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(369,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(367,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(364,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(365,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(366,35) ]
+      remark #15415: vectorization support: gather was generated for the variable F32:  indirect access, 64bit indexed   [ central2d.h(368,35) ]
+      remark #15458: masked indexed (or gather) loads: 6 
+      remark #15459: masked indexed (or scatter) stores: 6 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 375 
+      remark #15477: vector loop cost: 739.000 
+      remark #15478: estimated potential speedup: 0.590 
+      remark #15479: lightweight vector operations: 312 
+      remark #15480: medium-overhead vector operations: 5 
+      remark #15481: heavy-overhead vector operations: 1 
+      remark #15482: vectorized math library calls: 12 
+      remark #15487: type converts: 12 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: Central2D<Shallow2D, MinMod<Shallow2D::real>>::Central2D(Central2D<Shallow2D, MinMod<Shallow2D::real>> *, Central2D<Shallow2D, MinMod<Shallow2D::real>>::real, Central2D<Shallow2D, MinMod<Shallow2D::real>>::real, int, int, Central2D<Shallow2D, MinMod<Shallow2D::real>>::real)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(119,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(119,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(119,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(123,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(123,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(123,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(127,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(127,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(127,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(131,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(131,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(131,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(135,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(135,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(135,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(139,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(139,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(139,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(143,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(143,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(143,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(147,22)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(147,22)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(147,22)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(120,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(120,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(120,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(124,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(124,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(124,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(128,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(128,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(128,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(132,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(132,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(132,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(136,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(136,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(136,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(140,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(140,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(140,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(144,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(144,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(144,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(148,22)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(148,22)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(148,22)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(121,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(121,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(121,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(125,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(125,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(125,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(129,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(129,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(129,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(133,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(133,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(133,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(137,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(137,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(137,23)
+   <Remainder>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(141,23)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(141,23)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into central2d.h(141,23)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: std::vector<Central2D<Shallow2D, MinMod<Shallow2D::real>>::real, std::allocator<Central2D<Shallow2D, MinMod<Shallow2D::real>>::real>>::vector(std::vector<Central2D<Shallow2D, MinMod<Shallow2D::real>>::real, std::allocator<Central2D<Shallow2D, MinMod<Shallow2D::real>>::real>> *, std::vector<Central2D<Shallow2D, MinMod<Shallow2D::real>>::real, std::allocator<Central2D<Shallow2D, MinMod<Shallow2D::real>>::real>>::size_type, const std::vector<Central2D<Shallow2D, MinMod<Shallow2D::real>>::real, std::allocator<Central2D<Shallow2D, MinMod<Shallow2D::real>>::real>>::allocator_type &)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_vector.h(280,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_vector.h(280,9)
+      remark #15389: vectorization support: reference __first has unaligned access   [ /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(762,3) ]
+      remark #15381: vectorization support: unaligned access used inside loop body
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15451: unmasked unaligned unit stride stores: 1 
+      remark #15475: --- begin vector loop cost summary ---
+      remark #15476: scalar loop cost: 3 
+      remark #15477: vector loop cost: 0.620 
+      remark #15478: estimated potential speedup: 4.000 
+      remark #15479: lightweight vector operations: 3 
+      remark #15488: --- end vector loop cost summary ---
+   LOOP END
+
+   LOOP BEGIN at /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_algobase.h(760,7) inlined into /opt/rh/devtoolset-3/root/usr/include/c++/4.9.2/bits/stl_vector.h(280,9)
+   <Remainder>
+   LOOP END
+LOOP END
+===========================================================================
